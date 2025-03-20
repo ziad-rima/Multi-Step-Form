@@ -142,6 +142,129 @@ const App = () => {
 export default App
 ```
 
+- Next thing, I added navigation between steps using React Router's `useNavigate` hook.
+- Each step should have a "Next Step" and "Go Back" buttons (except Step 1 and Step 5).
+
+- Inside each step component, I imported `useNavigate` to handle navigation:
+- `Step1.jsx`:
+```jsx
+import { useNavigate } from "react-router-dom"
+
+const Step1 = () => {
+  const navigate = useNavigate();
+  return (
+    <>
+      <h1>Step 1: Personal Info</h1>
+      <button onClick={() => navigate("/step-2")}>Next Step</button>
+    </>
+  )
+}
+export default Step1
+```
+- `Step-2`:
+```jsx
+import { useNavigate } from "react-router-dom"
+const Step2 = () => {
+  const navigate = useNavigate();  
+  return (
+    <>
+      <h1>Step 2: Select Plan</h1>
+      <button onClick={() => navigate("/step-3")}>Next Step</button>
+      <button onClick={() => navigate("/")}>Go Back</button>
+    </>
+    )
+  }
+export default Step2
+```
+
+- Next thing, I implemented the React Context functionality to store user's input across multiple steps:
+- I created a `context` folder inside `/src`. And inside it, I created a file `FormContext.jsx`:
+```jsx
+import { createContext, useContext, useState } from "react";
+
+const FormContext = createContext();
+
+// custom hook to use the context
+export const useFormContext = () => useContext(FormContext);
+
+export const FormProvider = ({children}) => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        plan: "monthly", // this is the default plan
+        selectedPlan: null, // arcade, advanced, pro
+        addOns: [],
+    });
+
+    // function to update form data
+    const updateFormData = (newData) => {
+        setFormData((prevData) => ({...prevData, ...newData}));
+    };
+    
+    return (
+        <FormContext.Provider value={{formData, updateFormData}}>
+            {children}
+        </FormContext.Provider>
+    )
+}
+```
+- Breakdown:
+  - `FormContext` is a shared storage that any component can access.
+  - `export const useFormContext = () => useContext(FormContext);` is a shortcut that allows any component to easily access the shared storage.
+  - `export const FormProvider = ({ children }) => { ... }` wraps the entire app and gives all components access to the stored data. (Storage Manager).
+  - `<FormContext.Provider value={{ formData, updateFormData }}>{children}</FormContext.Provider>`, this makes `formData` and `updateFormData` available to all components.
+
+- Next, I wrapped `App` with `FormProvider`, any component inside `FormProvider` can access `FormContext`:
+- `main.jsx`:
+```jsx
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import {BrowserRouter} from "react-router-dom"
+import { FormProvider } from './context/FormContext.jsx'
+import './index.css'
+import App from './App.jsx'
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+      <FormProvider>
+        <App />
+      </FormProvider>
+    </BrowserRouter> 
+  </StrictMode>
+)
+```
+- I tested it and it worked, it successfully saved the name after clicking `Next Step`:
+- `Step1.jsx`:
+```jsx
+import { useNavigate } from "react-router-dom"
+import { useFormContext } from "../context/FormContext";
+const Step1 = () => {
+  const { formData, updateFormData } = useFormContext();
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    updateFormData({[e.target.name]: e.target.value});
+  }
+
+  return (
+    <>
+      <h1>Step 1: Personal Info</h1>
+      <label htmlFor="name">Name</label>
+      <input 
+        type="text"
+        id="name"
+        name="name"
+        placeholder="e.g. Stephen King"
+        value={formData.name}
+        onChange={handleChange}
+      />
+      <button onClick={() => navigate("/step-2")}>Next Step</button>
+    </>
+  )
+}
+export default Step1
+```
 ### Built with
 
 - Semantic HTML5 markup
@@ -155,6 +278,13 @@ export default App
 
 ### What I learned
 
+- The first thing I learned in this project was that it's generally better to finish the functionality first, then move to styling for a few reasons:
+  - To avoid wasting time on unused styles, meaning if the logic changes, I might have to redo some styling.
+  - To focus on core features, ensuring everything works correctly before making it look good.
+  - To debug faster, because it is easier to spot issues without worrying about CSS affecting the layout.
+- So, a good approach would be:
+  - Step 1: Get all the core functionality working (form handling, navigation, validation).
+  - Step 2: Once the logic is solid, refine the UI with styles. 
 
 ### Continued development
 
