@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Step5 = () => {
   return (
     <h1>
