@@ -265,6 +265,82 @@ const Step1 = () => {
 }
 export default Step1
 ```
+
+- Next thing, I added some state variables in `FormContext` that are related to the plan selected in step 2.
+
+- `FormContext.jsx`:
+```jsx
+...
+const [selectedPlan, setSelectedPlan] = useState({
+  name: "Arcade",
+  price: 9,
+});
+
+const [isYearly, setIsYearly] = useState(false);
+
+// Toggle between Monthly/Yearly
+const toggleBilling = () => {
+  setIsYearly((prev) => !prev);
+};
+
+// Function to update form data
+const updateFormData = (newData) => {
+  setFormData((prevData) => ({ ...prevData, ...newData }));
+};
+
+// Function to update add-ons
+const updateAddOns = (newAddOns) => {
+  setFormData((prevData) => ({ ...prevData, addOns: newAddOns }));
+};
+...
+```
+- I created a `PlanSelection.jsx` component that holds the logic behind choosing a plan:
+- `PlanSelection.jsx`:
+```jsx
+import { useFormContext } from "../context/FormContext"
+const PlanSelection = () => {
+  
+    const {selectedPlan, setSelectedPlan, isYearly, toggleBilling} = useFormContext();
+  
+    const plans = [
+        {name: "Arcade", monthlyPrice: 9, yearlyPrice: 90},
+        {name: "Advanced", monthlyPrice: 12, yearlyPrice: 120},
+        {name: "Pro", monthlyPrice: 15, yearlyPrice: 150},
+    ];
+
+    const handlePlanChange = (plan) => {
+        setSelectedPlan({
+            name: plan.name,
+            price: isYearly ? plan.yearlyPrice : plan.monthlyPrice,
+        });
+    };
+
+    return (
+    <div className="plan-selection-container">
+        <div className="plans">
+            {plans.map((plan) => (
+            <div key={plan.name} className="single-plan">
+                <input 
+                    type="radio"
+                    name="plan"
+                    checked={selectedPlan.name === plan.name}
+                    onChange={() => handlePlanChange(plan)}
+                />
+                <label>{plan.name} - ${isYearly ? plan.yearlyPrice : plan.monthlyPrice}/{isYearly ? "yr" : "mo"}</label>
+            </div>
+            ))}
+        </div>
+
+        <div className="toggle-plan-container">
+            <span>Monthly</span>
+            <button onClick={toggleBilling}>{isYearly ? "Switch to Monthly" : "Switch to Yearly"}</button>
+            <span>Yearly</span>
+        </div>
+    </div>
+  )
+}
+export default PlanSelection
+```
 ### Built with
 
 - Semantic HTML5 markup
