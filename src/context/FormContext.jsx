@@ -30,11 +30,6 @@ export const FormProvider = ({ children }) => {
         setFormData((prevData) => ({ ...prevData, ...newData }));
     };
 
-    // Function to update add-ons
-    const updateAddOns = (newAddOns) => {
-        setFormData((prevData) => ({ ...prevData, addOns: newAddOns }));
-    };
-
     return (
         <FormContext.Provider value={{
             formData,
@@ -43,7 +38,6 @@ export const FormProvider = ({ children }) => {
             setSelectedPlan,
             isYearly,
             toggleBilling,
-            updateAddOns
         }}>
             {children}
         </FormContext.Provider>
