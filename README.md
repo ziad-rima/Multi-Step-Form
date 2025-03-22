@@ -341,6 +341,65 @@ const PlanSelection = () => {
 }
 export default PlanSelection
 ```
+
+- Moving on to add-ons, I created a component `AddOnsSelections.jsx`, where I imported the `formData`, `updateFormData`, and `isYearly` states from the `FormContext` component, I declared an array of objects where each object defines a single addon by its name, description, and price. The price is set based on the selected plan (monthly or yearly):
+- `AddOnsSelections.jsx`:
+```jsx
+const {formData, updateFormData, isYearly} = useFormContext();
+const addOns = [
+  { 
+    name: "Online service", 
+    description: "Access to multiplayer games",
+    price: isYearly ? 10 : 1,
+  }, 
+  {
+    name: "Larger storage", 
+    description: "Extra 1TB of cloud save",
+    price: isYearly ? 20 : 2,
+  },
+  {
+    name: "Customizable profile", 
+    description: "Custom theme on your profile",
+    price: isYearly ? 20 : 2,
+  }
+]
+``` 
+- I then mapped over this array of objects and rendered each item:
+```jsx
+<div className="addons-selection-container">
+  <div className="addons">
+    {addOns.map((addon) => (
+      <div 
+        key={addon.name} 
+        className="addon"
+        onClick={() => handleCheckbox(addon)}
+        style={{
+        border: formData.addOns.some((item) => item.name === addon.name) ? "2px solid blue" : "1px solid gray",
+        padding: "10px",
+        cursor: "pointer"
+        }}
+      >
+        <h3>{addon.name}</h3>
+        <p>{addon.description}</p>
+        <p>+${addon.price}/{isYearly ? "yr" : "mo"}</p>
+      </div>
+    ))}
+  </div>     
+</div>
+```
+- When an item (an addon) is selected, it calls `handleCheckbox()` function, which checks whether the addon is already selected or not (to avoid duplicates). So if the item is already in the array but the user clicked it anyway, this means he's deselecting it. This function then successfully updates the `addOns` array in the `FormContext`:
+```jsx
+const handleCheckbox = (addon) => {
+    const isSelected = formData.addOns.some((item) => item.name === addon.name);
+    const updatedAddons = isSelected 
+      ? formData.addOns.filter((item) => item.name != addon.name)
+      : [...formData.addOns, addon];
+    updateFormData({addOns: updatedAddons});
+}
+```
+- I also removed `updateAddons()` function in `FormContext` as it serves nothing anymore. 
+
+
 ### Built with
 
 - Semantic HTML5 markup
