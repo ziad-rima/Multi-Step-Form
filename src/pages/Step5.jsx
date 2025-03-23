@@ -1,8 +1,9 @@
+import ThankYou from "../components/ThankYou"
 const Step5 = () => {
   return (
-    <h1>
-      Step 5: Thank You!
-    </h1>
+    <div className="step-5-container">
+      <ThankYou />
+    </div>
   )
 }
 
