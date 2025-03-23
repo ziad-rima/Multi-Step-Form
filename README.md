@@ -399,7 +399,67 @@ const handleCheckbox = (addon) => {
 ```
 - I also removed `updateAddons()` function in `FormContext` as it serves nothing anymore. 
 
+- Next step, the summary. I created a component named `Summary.jsx` that displays:
+  - The selected plan (monthly or yearly).
+  - The selected addons and the price based on the plan.
+  - The total price.
 
+- I started by importing and calculating the price based on the selected plan:
+- `Summary.jsx`:
+```jsx
+const navigate = useNavigate();
+const {formData, selectedPlan, isYearly} = useFormContext();
+    
+const planPrice = isYearly ? selectedPlan.price * 10 : selectedPlan.price;
+
+const total = formData.addOns.reduce((acc, curr) => {
+  return acc + (isYearly ? curr.price * 10 : curr.price);
+}, 0) + planPrice;
+```
+
+- Then I rendered the initial version of the page (as I did for the rest of the pages):
+```jsx
+return (
+  <div className="finishing-up-container">
+    <div className="selected-plan">
+      <h3>{selectedPlan.name} ({isYearly ? "Yearly" : "Monthly"}) - ${planPrice}/{isYearly ? "yr" : "mo"}</h3>
+      <button onClick={() => navigate("/step-2")}>Change</button>
+    </div>
+    <div className="selected-addons">
+      {formData.addOns.length > 0 
+        ? formData.addOns.map(addon => (
+          <div key={addon.name} className="selected-addon">
+            <p>{addon.name} - +${isYearly ? addon.price * 10 : addon.price}/{isYearly ? "yr" : "mo"}</p>
+          </div>
+          ))
+        : (
+            <p>No add-on selected</p>
+          )
+      }
+    </div>
+    <div className="total-per-period">
+      <p>Total (per {isYearly ? "year" : "month"}) - +${total}/{isYearly ? "yr" : "mo"}</p>
+    </div>
+  </div>
+)
+```
+
+- The step 5 isn't a page, it's just a "Thank you!" note. So I created a component named "ThankYou.jsx":
+- `ThankYou.jsx`:
+```jsx
+const ThankYou = () => {
+  return (
+    <div className="thankyou-container">
+      <h1>Thank you!</h1>
+      <p>Thanks for confirming your subscription! We hope you have fun 
+  using our platform. If you ever need support, please feel free 
+  to email us at support@loremgaming.com.</p>
+    </div>
+  )
+}
+export default ThankYou
+```
+- And I imported it in Step5.
 ### Built with
 
 - Semantic HTML5 markup
