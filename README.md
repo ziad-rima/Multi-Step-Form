@@ -460,6 +460,137 @@ const ThankYou = () => {
 export default ThankYou
 ```
 - And I imported it in Step5.
+
+- Now, to validation:
+- `Step1.jsx`:
+- I started by creating a function `validate()` that has an object `newErrors` which contains the errors we're keeping track of:
+```jsx
+const [errors, setErrors] = useState({});
+
+const validate = () => {
+  let newErrors = {}
+
+  if (!formData.name.trim()) {
+    newErrors.name = "Name is required";
+  } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
+    newErrors.name = "Name must contain only letters and spaces";
+  }
+
+  if (!formData.email.trim()) {
+    newErrors.email = "Email is required";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    newErrors.email = "Enter a valid email address";
+  }
+
+  if (!formData.phone.trim()) {
+    newErrors.phone = "Phone number is required";
+  } else if (!/^\d{10,15}$/.test(formData.phone)) {
+    newErrors.phone = "Enter a valid phone number"
+  }
+
+  setErrors(newErrors);
+
+  return Object.keys(newErrors).length === 0;
+}
+```
+- This function returns `true` or `false` based on whether we have any errors in the `newErrors` object.
+- I then created the form:
+```jsx
+<form onSubmit={handleSubmit} className="step1-form">
+  <div className="name-container">
+    <label htmlFor="name">Name</label>
+      <input 
+        type="text"
+        id="name"
+        name="name"
+        placeholder="e.g. Stephen King"
+        value={formData.name}
+        onChange={(e) => handleInputChange("name", e.target.value)}
+      />
+      {errors.name && <p className="error">{errors.name}</p>}
+    </div>
+
+    <div className="email-container">
+      <label htmlFor="email">Email Address</label>
+      <input 
+        type="email" 
+        id="email"
+        name="email"
+        placeholder="e.g. stephenking@lorem.com"
+        value={formData.email}
+        onChange={(e) => handleInputChange("email", e.target.value)}
+      />
+      {errors.email && <p className="error">{errors.email}</p>}
+    </div>
+
+    <div className="phone-container">
+      <label htmlFor="phone-number">Phone Number</label>
+      <input 
+        type="tel" 
+        id="phone-number"
+        name="phone"
+        value={formData.phone}
+        onChange={(e) => handleInputChange("phone", e.target.value)}
+      />
+      {errors.phone && <p className="error">{errors.phone}</p>}
+    </div>
+  <button type="submit">Next Step</button>
+</form>
+```
+- the `onChange()` attribute calls `handleInputChange()` function which takes in two arguments, `field` and `value`. This function updates the `formData` and removes the error if the user starts typing:
+```jsx
+const handleInputChange = (field, value) => {
+  updateFormData({ [field]: value });
+  setErrors((prevErrors) => ({...prevErrors, [field]: ""}));
+}
+```  
+- Finally, I created `handleSubmit()` function:
+```jsx
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (validate()) {
+    navigate("/step2");
+  }
+}
+```
+
+- Next functionality I implemented was the `localStorage` where:
+  - I created a function inside `FormContext` named `getSavedData()` which:
+    - Takes in two arguments, the key (which is the data) and the default value of that data.
+    - Checks the local storage for the data (key).
+    - It retrieves and stores it in `savedData`.
+    - Then we return `savedData` if it exists, otherwise we return the default value.
+```jsx
+const getSavedData = (key, defaultValue) => {
+  const savedData = localStorage.getItem(key);
+  return savedData ? JSON.parse(savedData) : defaultValue;
+};
+```
+- We use this function to load the previous data if it exists from the local storage and set it as a value to the input. Otherwise, we set the input to the default value. 
+- For example, `formData` is handled like this:
+```jsx
+const [formData, setFormData] = useState(() => getSavedData("formData", {
+  name: "",
+  email: "",
+  phone: "",
+  addOns: [],
+}));
+``` 
+- Where `"formData"` is the `key` and the object with the empty properties (`name`, `email`,`phone`,`addOns`) is the default value of `formData`.
+
+- One last thing is to actually store the data in `localStorage`:
+- Using `useEffect()`, each time the user changes the input, this effect runs:
+```jsx
+useEffect(() => {
+  localStorage.setItem("formData", JSON.stringify(formData));
+}, [formData])
+```
+- `JSON.stringify()` because `localStorage` can only store strings.
+
+- This way, we can ensure that each time the user updates a field or selects a plan, it gets saved automatically.
+
+
 ### Built with
 
 - Semantic HTML5 markup
@@ -480,6 +611,12 @@ export default ThankYou
 - So, a good approach would be:
   - Step 1: Get all the core functionality working (form handling, navigation, validation).
   - Step 2: Once the logic is solid, refine the UI with styles. 
+
+- Another important concept I needed to write down is `localStorage`, which is a method to store user's data so it won't be lost after a page refresh for example. I implemented this in `FormContext.jsx` component this way:
+  - Loading saved data when the app starts.
+    - Meaning when the app loads, we check if there's any saved form data in `localStorage` and use it to set the initial state (using `useEffect()`).
+  - Saving data when user updates their input.
+    - Meaning every time the user makes a change, we save it in `localStorage` so the data is always saved.
 
 ### Continued development
 
