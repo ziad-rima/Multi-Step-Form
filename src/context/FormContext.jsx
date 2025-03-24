@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const FormContext = createContext();
 
@@ -6,19 +6,37 @@ const FormContext = createContext();
 export const useFormContext = () => useContext(FormContext);
 
 export const FormProvider = ({ children }) => {
-    const [formData, setFormData] = useState({
+
+    const getSavedData = (key, defaultValue) => {
+        const savedData = localStorage.getItem(key);
+        return savedData ? JSON.parse(savedData) : defaultValue;
+    };
+
+    const [formData, setFormData] = useState(() => getSavedData("formData", {
         name: "",
         email: "",
         phone: "",
         addOns: [],
-    });
+    }));
 
-    const [selectedPlan, setSelectedPlan] = useState({
+    const [selectedPlan, setSelectedPlan] = useState(() => getSavedData("selectedPlan", {
         name: "Arcade",
         price: 9,
-    });
+    }));
 
-    const [isYearly, setIsYearly] = useState(false);
+    const [isYearly, setIsYearly] = useState(() => getSavedData("isYearly", false));
+
+    useEffect(() => {
+        localStorage.setItem("formData", JSON.stringify(formData));
+    }, [formData])
+
+    useEffect(() => {
+        localStorage.setItem("selectedPlan", JSON.stringify(selectedPlan));
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("isYearly", JSON.stringify(isYearly));
+    }, [])
 
     // Toggle between Monthly/Yearly
     const toggleBilling = () => {
