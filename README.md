@@ -590,6 +590,66 @@ useEffect(() => {
 
 - This way, we can ensure that each time the user updates a field or selects a plan, it gets saved automatically.
 
+- Next thing, I created a step tracker component that tells the user which step they're currently in.
+- `StepTracker.jsx`:
+```jsx
+import { useLocation, useNavigate } from "react-router-dom";
+import { useFormContext } from "../context/FormContext";
+
+const steps = [
+  { path: "/", label: "1" },
+  { path: "/step-2", label: "2" },
+  { path: "/step-3", label: "3" },
+  { path: "/step-4", label: "4" },
+];
+
+const StepTracker = () => {
+  const location = useLocation();
+  return (
+    <div className="step-tracker ubuntu-medium">
+      {steps.map((step, index) => (
+        <div
+          key={index}
+          className={`step-circle ${
+            location.pathname === step.path || 
+            (location.pathname === "/step-5" && step.path === "/step-4") 
+              ? "active" 
+              : ""
+          }`}
+        >
+          {step.label}
+        </div>
+      ))}
+    </div>
+  );
+};
+export default StepTracker;
+```
+- I then included `StepTracker` in `App.jsx`:
+```jsx
+import { Routes, Route } from "react-router-dom"
+import Step1 from "./pages/Step1";
+import Step2 from "./pages/Step2";
+import Step3 from "./pages/Step3";
+import Step4 from "./pages/Step4";
+import Step5 from "./pages/Step5";
+import StepTracker from "./components/StepTracker";
+const App = () => {
+  return (
+    <div>
+      <StepTracker />
+      <Routes>
+        <Route path="/" element={<Step1 />} />
+        <Route path="/step-2" element={<Step2 />} />
+        <Route path="/step-3" element={<Step3 />} />
+        <Route path="/step-4" element={<Step4 />} />
+        <Route path="/step-5" element={<Step5 />} />
+      </Routes>
+    </div>
+  )
+}
+export default App
+```
 
 ### Built with
 
@@ -599,8 +659,6 @@ useEffect(() => {
 - CSS Grid
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
 
 ### What I learned
 
@@ -617,6 +675,9 @@ useEffect(() => {
     - Meaning when the app loads, we check if there's any saved form data in `localStorage` and use it to set the initial state (using `useEffect()`).
   - Saving data when user updates their input.
     - Meaning every time the user makes a change, we save it in `localStorage` so the data is always saved.
+
+- `NavLink`: A special React Router component that creates a navigation link.
+- `useLocation`: A React Router hook that gives us access to the current URL's details.
 
 ### Continued development
 
