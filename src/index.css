@@ -39,9 +39,128 @@
 }
 
 body {
-  display: flex;
+  display: grid;
   place-items: center;
+  width: 100%;
   min-width: 320px;
   min-height: 100vh;
+  background-image: url("./images/bg-sidebar-mobile.svg");
+  background-repeat: no-repeat;
+  background-color: var(--Light-gray);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.step1-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  align-self: center;
+  background-color: var(--Alabaster);
+  border-radius: 1.3rem;
+  padding: 1.2rem;
+  max-width: 90%;
+  margin-bottom: 7rem;
+}
+
+.step1-header {
+  max-width: 100%;
+}
+
+.step1-header-title {
+  color: var(--Marine-blue);
+  margin: 1rem 0 .8rem 0;
+  font-size: 2.5rem;
+}
+
+.step1-header-par {
+  color: var(--Cool-gray);
+  font-size: 1.4rem;
+  width: 85%;
+  margin-bottom: 1rem;
+}
+
+.step1-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.label {
+  color: var(--Marine-blue);
+  margin: 1.2rem 0 .7rem 0;
+  text-align: left;
+  font-size: 1.3rem;
+}
+
+::placeholder {
+  color: var(--Cool-gray);
+  font-family: 'ubuntu';
+  font-weight: medium;
+}
+
+input {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.input-div {
+  width: 100%;
+  border: 1px solid var(--Cool-gray);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.step-tracker {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.step-circle {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: lightgray;
+  font-weight: bold;
+}
+
+.step-circle.active {
+  background: blue;
+  color: white;
+}
+
+.step-link {
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.step-circle.active {
+  background: blue;
+  color: white;
+  pointer-events: none;
 }
 
