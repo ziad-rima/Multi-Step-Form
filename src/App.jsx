@@ -7,7 +7,7 @@ import Step5 from "./pages/Step5";
 import StepTracker from "./components/StepTracker";
 const App = () => {
   return (
-    <div>
+    <div className="main-container">
       <StepTracker />
       <Routes>
         <Route path="/" element={<Step1 />} />
