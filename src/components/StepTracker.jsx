@@ -1,5 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useFormContext } from "../context/FormContext";
+import { useLocation } from "react-router-dom";
 
 const steps = [
   { path: "/", label: "1" },
