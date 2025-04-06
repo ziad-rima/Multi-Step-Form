@@ -7,8 +7,6 @@ const Step2 = () => {
       <h1>Step 2: Select your plan</h1>
       <p>You have the option of monthly or yearly billing.</p>
       <PlanSelection />
-      <button onClick={() => navigate("/step-3")}>Next Step</button>
-      <button onClick={() => navigate("/")}>Go Back</button>
     </>
     )
   }

@@ -7,8 +7,6 @@ const Step3 = () => {
       <h1>Step 3: Pick Add-ons</h1>
       <p>Add-ons help enhance your gaming experience.</p>
       <AddOnsSelections />
-      <button onClick={() => navigate("/step-4")}>Next Step</button>
-      <button onClick={() => navigate("/step-2")}>Go Back</button>
     </>
   )
 }

@@ -6,8 +6,6 @@ const Step4 = () => {
     <>
     <h1>Step 4: Review & Confirm</h1>
     <Summary />
-    <button onClick={() => navigate("/step-5")}>Confirm</button>
-    <button onClick={() => navigate("/step-3")}>Go Back</button>
     </>
   )
 }
