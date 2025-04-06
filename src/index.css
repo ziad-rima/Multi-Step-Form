@@ -39,8 +39,9 @@
 }
 
 body {
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   min-width: 320px;
   min-height: 100vh;
@@ -52,8 +53,17 @@ body {
 .main-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
+  height: 100vh;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
 }
 
 .step1-container {
@@ -61,12 +71,12 @@ body {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  align-self: center;
   background-color: var(--Alabaster);
   border-radius: 1.3rem;
   padding: 1.2rem;
   max-width: 90%;
-  margin-bottom: 7rem;
+  min-height: 350px;
+  margin-bottom: 12rem;
 }
 
 .step1-header {
@@ -130,37 +140,65 @@ input {
   border-radius: 5px;
 }
 
+.step-footer {
+  align-self: flex-end;
+  background-color: var(--Alabaster);
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.next-button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.next-button {
+  border: none;
+  outline: none;
+  background-color: var(--Marine-blue);
+  color: var(--Light-gray);
+  padding: .9rem 1rem;
+  border-radius: .5rem;
+  margin-left: auto;
+  font-size: 1.5rem;
+}
+
+.back-button {
+  border: none;
+  outline: none;
+  padding: .9rem 1rem;
+  border-radius: .5rem;
+  background: none;
+  color: var(--Cool-gray);
+  font-size: 1.5rem;
+}
+
 .step-tracker {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-top: 6rem;
 }
 
 .step-circle {
-  width: 3rem;
-  height: 3rem;
+  width: 3.5rem;
+  height: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: lightgray;
+  background: transparent;
   font-weight: bold;
+  border: 1px solid var(--Magnolia);
+  color: white;
+  font-size: 1.5rem;
 }
 
 .step-circle.active {
-  background: blue;
-  color: white;
-}
-
-.step-link {
-  text-decoration: none;
-  pointer-events: auto;
-}
-
-.step-circle.active {
-  background: blue;
-  color: white;
+  background: var(--Light-blue);
+  color: var(--Marine-blue);
   pointer-events: none;
 }
 
