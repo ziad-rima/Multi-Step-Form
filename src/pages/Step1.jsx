@@ -87,10 +87,11 @@ const Step1 = ({ setIsValid, setIsStep1Complete }) => {
               value={formData.name}
               onChange={(e) => handleInputChange("name", e.target.value)}
               onBlur={() => handleBlur("name")}
+              className="form-input"
             />
           </div>
           {(touched.name) && errors.name && (
-            <p className="error">{errors.name}</p>
+            <p className="error ubuntu-medium">{errors.name}</p>
           )}
         </div>
 
@@ -104,10 +105,11 @@ const Step1 = ({ setIsValid, setIsStep1Complete }) => {
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
               onBlur={() => handleBlur("email")}
+              className="form-input"
             />
           </div>
           {(touched.email) && errors.email && (
-            <p className="error">{errors.email}</p>
+            <p className="error ubuntu-medium">{errors.email}</p>
           )}
         </div>
 
@@ -121,10 +123,11 @@ const Step1 = ({ setIsValid, setIsStep1Complete }) => {
               value={formData.phone}
               onChange={(e) => handleInputChange("phone", e.target.value)}
               onBlur={() => handleBlur("phone")}
+              className="form-input"
             />
           </div>
           {(touched.phone) && errors.phone && (
-            <p className="error">{errors.phone}</p>
+            <p className="error ubuntu-medium">{errors.phone}</p>
           )}
         </div>
       </form>
