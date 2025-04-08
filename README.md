@@ -904,6 +904,101 @@ useEffect(() => {
   cursor: not-allowed;
 }
 ```
+
+- I did the styling as usual, one thing I'd like to talk about is the way I styled the toggle switch on the plan selection page:
+- `PlanSelection.jsx`:
+```jsx
+<div className="toggle-plan-container">
+  <span className={`span-month ubuntu-medium ${!isYearly ? "is-active" : ""}`}>Monthly</span>
+
+  <label className="switch">
+      <input
+      type="checkbox"
+      checked={isYearly}
+      onChange={toggleBilling}
+      />
+      <span className="slider" />
+  </label>
+
+  <span className={`span-year ubuntu-medium ${isYearly ? "is-active" : ""}`}>Yearly</span>
+</div>
+```
+- CSS:
+```css
+.toggle-plan-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: var(--Magnolia);
+  margin: 2rem 0;
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
+}
+
+.toggle-plan-container .span-month {
+  margin-left: 2rem;
+  font-size: 1.4rem;
+  color: var(--Cool-gray);
+  transition: color .3s;
+}
+
+.toggle-plan-container .span-year {
+  margin-right: 2rem;
+  font-size: 1.4rem;
+  color: var(--Cool-gray);
+  transition: color .3s;
+}
+
+.toggle-plan-container .is-active {
+  color: var(--Marine-blue);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--Marine-blue); 
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.switch input:checked + .slider {
+  background-color: var(--Marine-blue);
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+```
 ### Built with
 
 - Semantic HTML5 markup
