@@ -23,10 +23,15 @@ const PlanSelection = () => {
     <div className="plan-selection-container">
         <div className="plans">
             {plans.map((plan) => (
-            <div key={plan.name} className="single-plan">
+            <div key={plan.name} 
+                className={`single-plan ${selectedPlan.name == plan.name ? "isSelected" : ""}`}
+                onClick={() => handlePlanChange(plan)}
+            >
                 <input 
                     type="radio"
                     name="plan"
+                    id={plan.name}
+                    value={plan.name}
                     checked={selectedPlan.name === plan.name}
                     onChange={() => handlePlanChange(plan)}
                     className="plan-selection-input"
