@@ -3,10 +3,13 @@ import Summary from "../components/Summary";
 const Step4 = () => {
   const navigate = useNavigate();
   return (
-    <>
-    <h1>Step 4: Review & Confirm</h1>
+    <div className="step4-container">
+      <div className="step4-header">
+        <h1 className="step4-header-title ubuntu-bold">Finishing up</h1>
+        <p className="step4-header-par ubuntu-regular">Double-check everything looks OK before confirming.</p>
+      </div>
     <Summary />
-    </>
+    </div>
   )
 }
 

@@ -3,11 +3,13 @@ import AddOnsSelections from "../components/AddOnsSelections";
 const Step3 = () => {
   const navigate = useNavigate();
   return (
-    <>
-      <h1>Step 3: Pick Add-ons</h1>
-      <p>Add-ons help enhance your gaming experience.</p>
+    <div className="step3-container">
+      <div className="step3-header">
+        <h1 className="step3-header-title ubuntu-bold">Pick add-ons</h1>
+        <p className="step3-header-par ubuntu regular">Add-ons help enhance your gaming experience.</p>
+      </div>
       <AddOnsSelections />
-    </>
+    </div>
   )
 }
 
