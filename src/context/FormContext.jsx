@@ -21,7 +21,8 @@ export const FormProvider = ({ children }) => {
 
     const [selectedPlan, setSelectedPlan] = useState(() => getSavedData("selectedPlan", {
         name: "Arcade",
-        price: 9,
+        monthlyPrice: 9,
+        yearlyPrice: 90
     }));
 
     const [isYearly, setIsYearly] = useState(() => getSavedData("isYearly", false));
