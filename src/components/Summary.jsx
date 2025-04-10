@@ -5,32 +5,39 @@ const Summary = () => {
     const navigate = useNavigate();
     const {formData, selectedPlan, isYearly} = useFormContext();
     
-    const planPrice = isYearly ? selectedPlan.price * 10 : selectedPlan.price;
+    const planPrice = selectedPlan.price;
 
-    const total = formData.addOns.reduce((acc, curr) => {
-        return acc + (isYearly ? curr.price * 10 : curr.price);
-    }, 0) + planPrice;
+    const total = formData.addOns.reduce((acc, curr) => acc + curr.price, 0) + planPrice;
     
     return (
     <div className="finishing-up-container">
-        <div className="selected-plan">
-            <h3>{selectedPlan.name} ({isYearly ? "Yearly" : "Monthly"}) - ${planPrice}/{isYearly ? "yr" : "mo"}</h3>
-            <button onClick={() => navigate("/step-2")}>Change</button>
-        </div>
-        <div className="selected-addons">
-            {formData.addOns.length > 0 
-            ? formData.addOns.map(addon => (
-                <div key={addon.name} className="selected-addon">
-                    <p>{addon.name} - +${isYearly ? addon.price * 10 : addon.price}/{isYearly ? "yr" : "mo"}</p>
+        <div className="plan-addons-container">
+            <div className="selected-plan">
+                <div className="plan-change">
+                    <h3 className="plan-change-name ubuntu-medium">{selectedPlan.name} ({isYearly ? "Yearly" : "Monthly"})</h3>
+                    <button className="plan-change-button ubuntu-regular" onClick={() => navigate("/step-2")}>Change</button>
                 </div>
-            ))
-            : (
-                <p>No add-on selected</p>
-              )
-            }
+                <p className="plan-change-price ubuntu-medium">${planPrice}/{isYearly ? "yr" : "mo"}</p>
+            </div>
+            <hr />
+            <div className="selected-addons">
+                {formData.addOns.length > 0 
+                ? formData.addOns.map(addon => (
+                    <div key={addon.name} className="selected-addon">
+                        <p className="summary-addon-name ubuntu-regular">{addon.name}</p>
+                        <p className="summary-addon-price ubuntu-regular">+${addon.price}/{isYearly ? "yr" : "mo"}</p>
+                    </div>
+                ))
+                : (
+                    <p>No add-on selected</p>
+                )
+                }
+            </div>
         </div>
+        
         <div className="total-per-period">
-            <p>Total (per {isYearly ? "year" : "month"}) - +${total}/{isYearly ? "yr" : "mo"}</p>
+            <p className="total-name ubuntu-regular">Total (per {isYearly ? "year" : "month"})</p>
+            <p className="total-price ubuntu-regular">+${total}/{isYearly ? "yr" : "mo"}</p>
         </div>
     </div>
   )
