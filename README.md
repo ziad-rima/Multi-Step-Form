@@ -999,6 +999,54 @@ useEffect(() => {
   transform: translateX(26px);
 }
 ```
+
+- I did a similar thing in step 3 with the checkmark. First I created the svg component for the checkmark:
+- The way to do this is by wrapping the svg with a container that would be later styled based on whether the addon was selected or not (by changing the background color). The svg is just a transparent checkmark, by wrapping it in a square container, we make sure that when we change the background color of the container to something like purple, the checkmark (svg) will appear.
+- `AddOnsSelections.jsx`:
+```jsx
+...
+return (
+  <div className="addons-selection-container">
+    <div className="addons">
+      {addOns.map((addon) => (
+          <div 
+          key={addon.name} 
+          className={`addon ${formData.addOns.some(item => item.name == addon.name) ? "selected-addon" : ""}`}
+          onClick={() => handleCheckbox(addon)}
+          >
+          <div className={`checkmark-container ${formData.addOns.some((item) => item.name === addon.name) ? "checked" : ""}`}>
+              <CheckmarkSVG />
+          </div>
+          <div className="name-description">
+              <h3 className="addon-name ubuntu-medium">{addon.name}</h3>
+              <p className="addon-description ubuntu-regular">{addon.description}</p>
+          </div>
+              <p className="addon-price ubuntu-regular">+${addon.price}/{isYearly ? "yr" : "mo"}</p>
+          </div>
+      ))}
+    </div>
+  </div>
+)
+...
+```
+- CSS:
+```css
+.checkmark-container {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--Cool-gray);
+  border-radius: .4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--White);
+  transition: background-color .2s ease, border-color .2s ease;
+}
+
+.checked {
+  background-color: var(--Purplish-blue);
+}
+```
 ### Built with
 
 - Semantic HTML5 markup
