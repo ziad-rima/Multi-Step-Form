@@ -80,19 +80,28 @@ body {
 }
 
 .step1-header,
-.step2-header {
+.step2-header,
+.step3-header,
+.step4-header,
+.step5-header {
   max-width: 100%;
 }
 
 .step1-header-title,
-.step2-header-title {
+.step2-header-title,
+.step3-header-title,
+.step4-header-title,
+.step5-header-title {
   color: var(--Marine-blue);
   margin: 1rem 0 .8rem 0;
   font-size: 2.5rem;
 }
 
 .step1-header-par,
-.step2-header-par {
+.step2-header-par,
+.step3-header-par,
+.step4-header-par,
+.step5-header-par {
   color: var(--Cool-gray);
   font-size: 1.5rem;
   width: 85%;
@@ -214,7 +223,10 @@ body {
   margin-top: .2rem;
 }
 
-.step2-container {
+.step2-container,
+.step3-container,
+.step4-container,
+.step5-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -227,14 +239,22 @@ body {
   margin-bottom: 7.6rem;
 }
 
-.plan-selection-container {
+.step3-container {
+  margin-bottom: 15.8rem;
+}
+
+.plan-selection-container,
+.addons-selection-container,
+.finishing-up-container,
+.thankyou-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 100%;
 }
 
-.plans {
+.plans,
+.addons {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -253,6 +273,62 @@ body {
   border-radius: 0.8rem;
   background-color: var(--Alabaster);
   cursor: pointer;
+}
+
+.addon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 280px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--Light-gray);
+  border-radius: 0.8rem;
+  cursor: pointer;
+}
+
+.addon .name-description {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.4rem;
+}
+
+.addon .name-description .addon-name {
+  font-size: 1.5rem;
+  color: var(--Marine-blue);
+  margin-bottom: .4rem;
+}
+
+.addon .name-description .addon-description {
+  font-size: 1.2rem;
+  color: var(--Cool-gray);
+}
+
+.addon .addon-price {
+  color: var(--Purplish-blue);
+  font-size: 1.3rem;
+  margin-left: auto;
+}
+
+.addons .selected-addon {
+  border: 1px solid var(--Purplish-blue);
+  background-color: var(--Magnolia);
+}
+
+.checkmark-container {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--Cool-gray);
+  border-radius: .4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--White);
+  transition: background-color .2s ease, border-color .2s ease;
+}
+
+.checked {
+  background-color: var(--Purplish-blue);
 }
 
 .single-plan .icon {
@@ -356,4 +432,118 @@ body {
 
 .switch input:checked + .slider:before {
   transform: translateX(26px);
+}
+
+.isSelected {
+  background-color: var(--Magnolia);
+  border-color: var(--Marine-blue);
+}
+.single-plan {
+  transition: background-color 0.3s ease, border-color 0.2s ease;
+}
+
+.step4-container {
+  padding: 1rem 1.5rem;
+  margin-bottom: 16.9rem;
+}
+
+.finishing-up-container {
+  width: 100%;
+}
+
+.plan-addons-container {
+  background-color: var(--Magnolia);
+  width: 100%;
+  padding: 1rem;
+  border-radius: .8rem;
+  margin: 1.2rem 0;
+}
+
+.selected-plan {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.plan-change-name {
+  font-size: 1.5rem;
+  color: var(--Marine-blue);
+  margin-bottom: .1rem;
+}
+
+.plan-change-button {
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  background: none;
+  color: var(--Cool-gray);
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.plan-change-price {
+  margin-left: auto;
+  color: var(--Marine-blue);
+  font-size: 1.4rem;
+}
+
+.selected-addons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 1.2rem;
+}
+
+.selected-addon {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: .8rem;
+}
+
+.summary-addon-name {
+  font-size: 1.5rem;
+  color: var(--Cool-gray);
+}
+
+.summary-addon-price {
+  color: var(--Marine-blue);
+  font-size: 1.4rem;
+}
+
+.total-per-period {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  margin: .5rem 0;
+}
+
+.total-name {
+  font-size: 1.5rem;
+  color: var(--Cool-gray);
+}
+
+.total-price {
+  color: var(--Purplish-blue);
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.step5-container {
+  padding: 5rem 1rem;
+  margin-bottom: 14.2rem;
+  min-height: 380px;
+}
+
+.step5-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step5-header-par {
+  text-align: center;
+  line-height: 1.4;
 }
