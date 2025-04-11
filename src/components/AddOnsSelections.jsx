@@ -30,7 +30,12 @@ const AddOnsSelections = () => {
         
         const updatedAddons = isSelected 
         ? formData.addOns.filter((item) => item.name != addon.name)
-        : [...formData.addOns, addon];
+        : [...formData.addOns, {
+            name: addon.name,
+            description: addon.description,
+            monthlyPrice: addon.monthlyPrice,
+            yearlyPrice: addon.yearlyPrice
+        }];
         
         updateFormData({addOns: updatedAddons});
     }
@@ -51,7 +56,7 @@ const AddOnsSelections = () => {
                         <h3 className="addon-name ubuntu-medium">{addon.name}</h3>
                         <p className="addon-description ubuntu-regular">{addon.description}</p>
                     </div>
-                        <p className="addon-price ubuntu-regular">+${addon.price}/{isYearly ? "yr" : "mo"}</p>
+                        <p className="addon-price ubuntu-regular">+${isYearly ? addon.yearlyPrice : addon.monthlyPrice}/{isYearly ? "yr" : "mo"}</p>
                     </div>
                 ))}
             </div>

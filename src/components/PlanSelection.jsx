@@ -15,7 +15,8 @@ const PlanSelection = () => {
     const handlePlanChange = (plan) => {
         setSelectedPlan({
             name: plan.name,
-            price: isYearly ? plan.yearlyPrice : plan.monthlyPrice,
+            monthlyPrice: plan.monthlyPrice,
+            yearlyPrice: plan.yearlyPrice
         });
     };
 

@@ -19,11 +19,19 @@ export const FormProvider = ({ children }) => {
         addOns: [],
     }));
 
-    const [selectedPlan, setSelectedPlan] = useState(() => getSavedData("selectedPlan", {
-        name: "Arcade",
-        monthlyPrice: 9,
-        yearlyPrice: 90
-    }));
+    const [selectedPlan, setSelectedPlan] = useState(() => {
+        const saved = localStorage.getItem("selectedPlan");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed.price !== undefined) {
+            localStorage.removeItem("selectedPlan");
+            return { name: "", monthlyPrice: 0, yearlyPrice: 0 };
+          }
+          return parsed;
+        }
+        return { name: "", monthlyPrice: 0, yearlyPrice: 0 };
+    });
+      
 
     const [isYearly, setIsYearly] = useState(() => getSavedData("isYearly", false));
 
@@ -33,11 +41,12 @@ export const FormProvider = ({ children }) => {
 
     useEffect(() => {
         localStorage.setItem("selectedPlan", JSON.stringify(selectedPlan));
-    }, []);
-
+    }, [selectedPlan]);
+    
     useEffect(() => {
         localStorage.setItem("isYearly", JSON.stringify(isYearly));
-    }, [])
+    }, [isYearly]);
+    
 
     // Toggle between Monthly/Yearly
     const toggleBilling = () => {

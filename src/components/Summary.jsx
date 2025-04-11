@@ -5,9 +5,16 @@ const Summary = () => {
     const navigate = useNavigate();
     const {formData, selectedPlan, isYearly} = useFormContext();
     
-    const planPrice = selectedPlan.price;
+    console.log(selectedPlan.yearlyPrice);
+    console.log(selectedPlan.monthlyPrice);
 
-    const total = formData.addOns.reduce((acc, curr) => acc + curr.price, 0) + planPrice;
+    console.log(selectedPlan);
+
+    const planPrice = isYearly ? selectedPlan.yearlyPrice : selectedPlan.monthlyPrice;
+
+    const total = formData.addOns.reduce((acc, curr) => {
+        return acc + (isYearly ? curr.yearlyPrice : curr.monthlyPrice);
+    }, 0) + (isYearly ? selectedPlan.yearlyPrice : selectedPlan.monthlyPrice);    
     
     return (
     <div className="finishing-up-container">
@@ -25,7 +32,7 @@ const Summary = () => {
                 ? formData.addOns.map(addon => (
                     <div key={addon.name} className="selected-addon">
                         <p className="summary-addon-name ubuntu-regular">{addon.name}</p>
-                        <p className="summary-addon-price ubuntu-regular">+${addon.price}/{isYearly ? "yr" : "mo"}</p>
+                        <p className="summary-addon-price ubuntu-regular">+${isYearly ? addon.yearlyPrice : addon.monthlyPrice}/{isYearly ? "yr" : "mo"}</p>
                     </div>
                 ))
                 : (
