@@ -11,10 +11,7 @@ This is a solution to the [Multi-step form challenge on Frontend Mentor](https:/
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -39,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- []()
-- []()
+- [Live Site URL](https://multistepfront.netlify.app/)
+- [Solution URL](https://www.frontendmentor.io/solutions/react-multi-step-form-fUVXk8P8gj)
 
 ## My process
 
