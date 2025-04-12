@@ -34,7 +34,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./public/images/Screenshot.png)
 
 
 ### Links
@@ -1072,14 +1072,8 @@ return (
   - Saving data when user updates their input.
     - Meaning every time the user makes a change, we save it in `localStorage` so the data is always saved.
 
-- `NavLink`: A special React Router component that creates a navigation link.
+- `NavLink`: A special React Router component that creates a navigation link. (similar to `<a></a>` in HTML).
 - `useLocation`: A React Router hook that gives us access to the current URL's details.
-
-### Continued development
-
-
-### Useful resources
-
 
 ## Author
 
