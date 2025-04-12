@@ -45,7 +45,6 @@ const PlanSelection = () => {
                     {plan.name}
                 </label>
                     <p className="plan ubuntu-regular">${isYearly ? plan.yearlyPrice : plan.monthlyPrice}/{isYearly ? "yr" : "mo"}</p>
-
                 </div>
                 {isYearly && <p className="free-months ubuntu-medium">2 months free</p>}
             </div>

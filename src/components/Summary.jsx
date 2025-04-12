@@ -36,7 +36,7 @@ const Summary = () => {
                     </div>
                 ))
                 : (
-                    <p>No add-on selected</p>
+                    <p className="no-addon ubuntu-regular">No add-on selected</p>
                 )
                 }
             </div>

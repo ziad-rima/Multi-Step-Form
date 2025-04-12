@@ -1,11 +1,11 @@
-const NextButton = ({ handleNext, disabled }) => {
+const NextButton = ({ handleNext, disabled, confirm }) => {
     return (
         <button 
             className={`next-button ubuntu-medium ${disabled ? 'disabled' : ''}`} 
             onClick={handleNext}
             disabled={disabled}
         >
-            Next Step
+            {confirm ? "Confirm" : "Next Step"}
         </button>
     );
 };
