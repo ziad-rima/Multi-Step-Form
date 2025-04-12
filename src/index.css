@@ -49,7 +49,6 @@ body {
   background-repeat: no-repeat;
   background-color: var(--Light-gray);
   background-size: contain;
-  overflow: hidden;
 }
 
 .main-container {
