@@ -29,6 +29,7 @@ const App = () => {
   return (
     <div className="main-container">
       <StepTracker />
+      <div className="main-content-area">
       <div className="step-content">
         <Routes>
           <Route 
@@ -53,9 +54,12 @@ const App = () => {
           <NextButton 
             handleNext={handleNext}
             disabled={currentIndex === 0 ? !isStep1Complete : false}
+            confirm={currentIndex === 3}
         />
         )}
       </div>
+      </div>
+      
     </div>
   );
 };

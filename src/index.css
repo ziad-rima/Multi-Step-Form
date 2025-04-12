@@ -48,6 +48,8 @@ body {
   background-image: url("./images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
   background-color: var(--Light-gray);
+  background-size: contain;
+  overflow: hidden;
 }
 
 .main-container {
@@ -178,6 +180,7 @@ body {
   border-radius: .5rem;
   margin-left: auto;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .back-button {
@@ -188,6 +191,7 @@ body {
   background: none;
   color: var(--Cool-gray);
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .step-tracker {
@@ -221,6 +225,11 @@ body {
 .error {
   color: var(--Strawberry-red);
   margin-top: .2rem;
+}
+
+.no-addon {
+  font-size: 1.2rem;
+  color: var(--Marine-blue);
 }
 
 .step2-container,
@@ -546,4 +555,246 @@ body {
 .step5-header-par {
   text-align: center;
   line-height: 1.4;
+}
+
+@media (min-width: 745px) {
+  .step1-header-title,
+  .step2-header-title,
+  .step3-header-title,
+  .step4-header-title,
+  .step5-header-title {
+    font-size: 2.6rem;
+  }
+
+  .step1-header-par,
+  .step2-header-par,
+  .step3-header-par,
+  .step4-header-par,
+  .step5-header-par {
+    font-size: 1.6rem;
+  }
+
+  .label {
+    font-size: 1.6rem;
+  }
+
+  .form-input {
+    font-size: 1.6rem;
+  }
+
+  .step2-container,
+  .step3-container,
+  .step4-container,
+  .step5-container {
+    width: 365px;
+  }
+
+  .single-plan,
+  .addon {
+    width: 300px;
+    margin-bottom: 1.3rem;
+  }
+
+  .label-of-plan,
+  .addon-name {
+    font-size: 1.6rem;
+  } 
+
+  .plan,
+  .addon-description {
+    font-size: 1.3rem;
+  }
+
+  .free-months {
+    font-size: 1.2rem;
+  }
+
+  .span-month,
+  .span-year {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1020px) {
+  .step2-container,
+  .step3-container,
+  .step4-container,
+  .step5-container {
+    width: 380px;
+  }
+
+  .single-plan,
+  .addon {
+    width: 320px;
+  }
+}
+
+@media (min-width: 1116px) {
+  body {
+    background-image: url(../public/images/bg-sidebar-desktop.svg);
+    background-color: var(--Alabaster);
+  }
+
+  .main-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+  }
+
+  .main-content-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-content {
+    flex-grow: 1;
+  }
+  
+  .step-footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--Alabaster);
+    width: 700px;
+    align-self: center;
+  }
+
+  .step1-container,
+  .step2-container,
+  .step3-container,
+  .step4-container,
+  .step5-container {
+    align-items: flex-start;
+    margin: 0;
+    width: 500px;
+  }
+
+  .step1-header,
+  .step2-header,
+  .step3-header,
+  .step4-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .step5-header {
+    margin-top: 2rem;
+  }
+
+  .step1-header-title,
+  .step2-header-title,
+  .step3-header-title,
+  .step4-header-title,
+  .step5-header-title {
+    font-size: 2.8rem;
+  }
+
+  .step1-header-par,
+  .step2-header-par,
+  .step3-header-par,
+  .step4-header-par,
+  .step5-header-par {
+    font-size: 1.6rem;
+    width: 100%;
+  }
+
+  .label {
+    font-size: 1.6rem;
+  }
+
+  .form-input {
+    font-size: 1.6rem;
+  }
+
+  .error {
+    font-size: 1.2rem;
+  }
+
+  .plans {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .single-plan {
+    width: 150px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1.2rem;
+    height: 200px;
+  }
+
+  .label-plan {
+    margin-top: 8rem;
+  }
+
+  .addons {
+    width: 100%;
+  }
+
+  .addon {
+    width: 450px;
+    margin-bottom: 2rem;
+    height: auto; 
+    padding: 2rem;
+  }
+
+  .plan-addons-container {
+    padding: 2rem 1.5rem;
+    margin: 1.6rem 0;
+  }
+
+  .selected-plan {
+    margin-bottom: 1.6rem;
+  }
+
+  .selected-addons {
+    margin-top: 1.6rem;
+  }
+
+  .selected-addon {
+    margin: 1rem 0;
+  }
+
+  .step-tracker {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 2rem;
+    margin-top: 3rem;
+  }
+
+  .step-circle {
+    margin-bottom: 3rem;
+  }
+
+  .step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .step-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 2.6rem;
+    margin-left: 2rem;
+  }
+
+  .step-info .step-num {
+    font-size: 1.4rem;
+    color: var(--Pastel-blue);
+    margin-bottom: .2rem;
+  }
+
+  .step-info .step-description {
+    color: var(--White);
+    font-size: 1.6rem;
+    margin-top: .2rem;
+  }
 }
