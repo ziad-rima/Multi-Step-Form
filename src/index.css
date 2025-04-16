@@ -44,7 +44,6 @@ body {
   justify-content: center;
   width: 100%;
   min-width: 320px;
-  min-height: 100vh;
   background-image: url("./images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
   background-color: var(--Light-gray);
