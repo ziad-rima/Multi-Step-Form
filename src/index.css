@@ -90,10 +90,9 @@ body {
   justify-content: center;
   background-color: var(--Alabaster);
   border-radius: 1.3rem;
-  padding: 1.2rem;
+  padding: 2rem 1.2rem;
   max-width: 90%;
   min-height: 350px;
-  box-shadow: 1px 6px 5px 0px rgba(0,0,0,0.75);
 }
 
 .step1-header,
@@ -247,11 +246,20 @@ body {
   align-items: center;
   justify-content: center;
   background-color: var(--Alabaster);
-  padding: 1rem .8rem;
+  padding: 2rem 1.2rem;
   border-radius: 1.3rem;
   max-width: 100%;
   width: 324px;
-  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+}
+
+@media (max-width: 720px) {
+  .step1-container,
+  .step2-container,
+  .step3-container,
+  .step4-container,
+  .step5-container {
+    box-shadow: 1px 6px 5px 0px rgba(0,0,0,0.75);
+  }
 }
 
 .plan-selection-container,
