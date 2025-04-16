@@ -44,7 +44,7 @@ body {
   justify-content: center;
   width: 100%;
   min-width: 320px;
-  background-image: url("./images/bg-sidebar-mobile.svg");
+  background-image: url("/images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
   background-color: var(--Light-gray);
   background-size: contain;
@@ -78,7 +78,7 @@ body {
 .step-footer {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1.3rem;
   background-color: var(--Alabaster);
   width: 100%;
 }
@@ -93,6 +93,7 @@ body {
   padding: 1.2rem;
   max-width: 90%;
   min-height: 350px;
+  box-shadow: 1px 6px 5px 0px rgba(0,0,0,0.75);
 }
 
 .step1-header,
@@ -250,6 +251,7 @@ body {
   border-radius: 1.3rem;
   max-width: 100%;
   width: 324px;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
 }
 
 .plan-selection-container,
@@ -288,7 +290,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 280px;
+  width: 100%;
   margin-bottom: 1rem;
   padding: 1rem;
   border: 1px solid var(--Light-gray);
@@ -512,7 +514,6 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: .8rem;
 }
 
 .summary-addon-name {
@@ -783,14 +784,6 @@ body {
 
   .selected-plan {
     margin-bottom: 1.6rem;
-  }
-
-  .selected-addons {
-    margin-top: 1.6rem;
-  }
-
-  .selected-addon {
-    margin: 1rem 0;
   }
 
   .step-tracker {
