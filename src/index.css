@@ -91,7 +91,7 @@ body {
   background-color: var(--Alabaster);
   border-radius: 1.3rem;
   padding: 2rem 1.2rem;
-  max-width: 90%;
+  width: 340px;
   min-height: 350px;
 }
 
@@ -249,7 +249,7 @@ body {
   padding: 2rem 1.2rem;
   border-radius: 1.3rem;
   max-width: 100%;
-  width: 324px;
+  width: 340px;
 }
 
 @media (max-width: 720px) {
